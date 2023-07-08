@@ -1,7 +1,10 @@
 const { 
     saveArticle,
     getAllArticle,
-    articleById,
+    getArticleById,
+    deleteArticleById,
+    getAndEditArticlesById,
+    editArticlesById,
 } = require('../../models/articles.model')
 const Article = require('../../models/articles.mongo');
 
@@ -18,12 +21,29 @@ function httpPostNewArticle(req,res) {
 }
 
 function httpGetArticlesById(req,res) {
-    return articleById(req,res)
+    return getArticleById(req,res)
 }
+
+function httpDeleteArticlesById(req,res) {
+    return deleteArticleById(req,res)
+}
+
+function httpGetAndEditArticlesById(req,res){
+    return getAndEditArticlesById(req,res)
+}
+
+function httpEditArticlesById(req,res){
+    return editArticlesById(req,res)
+}
+
 
 module.exports = { 
     httpGetAllArticles,
     httpNewArticle,
     httpPostNewArticle,
     httpGetArticlesById,
+    httpDeleteArticlesById,
+    httpGetAndEditArticlesById,
+    httpEditArticlesById,
+
 }

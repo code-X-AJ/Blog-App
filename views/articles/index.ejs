@@ -9,7 +9,7 @@
   <body>
     <div class="container" >
         <h1 class="mb-4">Blog Article</h1>
-        <a href="/articles/new" class="btn btn-success">New Article</a>
+        <a href="/new" class="btn btn-success">New Article</a>
         <br>
         <br>
         <% articles.forEach(article => { %>
@@ -19,13 +19,15 @@
                     <div class="card-subtitle text-muted mb-2">
                       <strong><div class="card-text mb-2"><%- article.createdAt.toLocaleDateString() %></div></strong>
                       <div ><%= article.description%></div>
-                      <a href="/articles/<%= article.id %>" class="btn btn-primary">Read More</a>
+                      <a href="/<%= article.slug %>" class="btn btn-primary">Read More</a>
+                      <a href="/edit/<%= article.id %>" class="btn btn-info">Edit</a>
+                      <form action="/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                      </form>
                     </div>
                 </div>
             </div>
         <% }) %>
-            
     </div>
-    
 </body>
 </html>

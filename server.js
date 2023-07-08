@@ -1,9 +1,9 @@
 const express = require('express');
+const methodOverride = require('method-override')
 require('dotenv').config();
 
 const { connectDB } = require('./services/mongo')
 const { articlesRouter } = require('./router/articles/articles.router') 
-const { homeRouter } = require('./router/home/home.router') 
 
 const app = express();
 
@@ -13,9 +13,9 @@ app.use(express.json())
 
 app.use(express.urlencoded({ extended: true }));
 app.set('view engine','ejs')
+app.use(methodOverride('_method'))
 
-app.use('/', homeRouter)
-app.use('/articles', articlesRouter)
+app.use('/', articlesRouter)
 
 async function startServer(){
     await connectDB();
